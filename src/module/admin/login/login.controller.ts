@@ -1,15 +1,17 @@
 import {Controller, Get, Render,Request,Response} from '@nestjs/common';
 import {ToolsService} from "../../../service/tools/tools.service";
 import {CaptchaObj} from "svg-captcha";
+import {AdminService} from "../../../service/admin/admin.service";
 
 @Controller('admin/login')
 export class LoginController {
 
-   constructor(private  toolsService:ToolsService) {
+   constructor(private  toolsService:ToolsService,private adminService:AdminService) {
    }
     @Get()
     @Render('admin/login')
-    index(){
+    async index(){
+       console.log(await this.adminService.find())
         return {};
     }
 
